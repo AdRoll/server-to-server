@@ -1,11 +1,13 @@
 /**
  * Gets the NextRoll first party cookie and refreshes it in browser.
  *
+ * @param  {String} domain Optional domain to use in set/refresh cookie.
  * @return {String} Cookie value.
  */
-function nextroll_first_party_cookie() {
+function nextroll_first_party_cookie(domain) {
     var fpc = String(window.document.cookie || '').match(/__adroll_fpc=([^;]+)/),
-        cookie = '', exp = new Date();
+        cookie = '',
+        exp = new Date();
     // Cookie expiration is 1 year from now.
     exp.setTime(exp.getTime() + (86400 * 365 * 1000));
 
@@ -29,8 +31,14 @@ function nextroll_first_party_cookie() {
     } else {
         cookie = fpc[1];
     }
+    if (domain) {
+        domain = '; domain=' + domain;
+    } else {
+        domain = '';
+    }
     // Refreshes the cookie expiration in the browser.
-    window.document.cookie = '__adroll_fpc=' + cookie + '; path=/; samesite=lax; expire=' + exp.toGMTString();
+    window.document.cookie = '__adroll_fpc=' + cookie + domain
+        + '; path=/; samesite=lax; expire=' + exp.toGMTString();
     return cookie;
 }
 

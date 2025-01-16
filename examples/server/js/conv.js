@@ -7,20 +7,13 @@
 const NextRollAPI = require('./api');
 
 
-/** Standard required parameters for all requests. */
-const adroll_adv_id = 'ADV';
-const adroll_pix_id = 'PIX';
-const adroll_token = 'token12345';
-// "True" indicates the call is for testing only and should not appear in metrics.
+// "true" indicates the call is for testing only and should not appear
+// in metrics. Be sure to replace with "false" for actual production use.
 const dry_run = true;
 
 // Example service for making API calls.
-const nrapi = new NextRollAPI(
-    adroll_adv_id,
-    adroll_pix_id,
-    adroll_token,
-    dry_run
-);
+const nrapi = new NextRollAPI(dry_run);
+
 // Sets the event tracking parameters.
 nrapi.set({
     conversion_value: '123.45',
@@ -41,6 +34,7 @@ nrapi.set({
     page_location: 'https://www.website.com/store/checkout',
     user_agent: 'Mozilla/5.0 Engine/20240101 Browser/123.0',
 });
+
 // Sends the event to the API. Results are returned via a Promise callback.
 nrapi.send()
     .then(success_response => console.log(success_response))

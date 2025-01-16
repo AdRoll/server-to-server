@@ -13,6 +13,12 @@ import os
 import urllib.request
 
 
+# Be sure to update parameters with the values assigned to your account.
+ADV_ID = '<REPLACE_ME_NEXTROLL_ADV_ID>'
+PIX_ID = '<REPLACE_ME_NEXTROLL_PIX_ID>'
+TOKEN = '<REPLACE_ME_NEXTROLL_TOKEN>'
+
+
 class NextRollAPIException(Exception):
     code = None
 
@@ -25,19 +31,16 @@ class NextRollAPIException(Exception):
 class NextRollAPI:
     NEXTROLL_BASE_URL = 'https://srv.adroll.com/api'
 
-    def __init__(self, adv_id, pix_id, token, dry_run=False):
+    def __init__(self, dry_run=False):
         """
         Required params for all API requests.
 
-        :param adv_id:  The adroll_adv_id assigned to your organization.
-        :param pix_id:  The adroll_pix_id assigned to your organization.
-        :param token:   Your personal access token.
         :param dry_run: True = request is for testing only and should not
                         be collected in official metrics.
         """
-        self.adv_id = adv_id
-        self.pix_id = pix_id
-        self.token = token
+        self.adv_id = ADV_ID
+        self.pix_id = PIX_ID
+        self.token = TOKEN
         self.dry_run = dry_run
         self.reset()
 

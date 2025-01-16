@@ -6,23 +6,26 @@
 const https = require('node:https');
 const { randomBytes } = require('node:crypto');
 
-
 const API_BASE_URL = 'https://srv.adroll.com/api/';
+
+
+// Be sure to update parameters with the values assigned to your account.
+const ADV_ID = '<REPLACE_ME_NEXTROLL_ADV_ID>';
+const PIX_ID = '<REPLACE_ME_NEXTROLL_PIX_ID>';
+const TOKEN = '<REPLACE_ME_NEXTROLL_TOKEN>';
+
 
 class NextRollAPI {
     /**
      * Required params for all API requests.
      *
-     * @param {String}  adv_id  The adroll_adv_id assigned to your account.
-     * @param {String}  pix_id  The adroll_pix_id assigned to your account.
-     * @param {String}  token   Your personal access token.
      * @param {Boolean} dry_run True = request is for testing only and should
      *                          not be collected in official metrics.
      */
-    constructor(adv_id, pix_id, token, dry_run = false) {
-        this.adv_id = adv_id;
-        this.pix_id = pix_id;
-        this.token = token;
+    constructor(dry_run = false) {
+        this.adv_id = ADV_ID;
+        this.pix_id = PIX_ID;
+        this.token = TOKEN;
         this.dry_run = dry_run;
         this.reset();
     }

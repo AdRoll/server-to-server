@@ -8,15 +8,12 @@ from api import NextRollAPI, NextRollAPIException
 import sys
 
 
-# Standard required parameters for all requests.
-adroll_adv_id = 'ADV'
-adroll_pix_id = 'PIX'
-adroll_token = 'token12345'
-# "True" indicates the call is for testing only and should not appear in metrics.
+# "True" indicates the call is for testing only and should not appear
+# in metrics. Be sure to replace with "False" for actual production use.
 dry_run = True
 
 # Example service for making API calls.
-nrapi = NextRollAPI(adroll_adv_id, adroll_pix_id, adroll_token, dry_run)
+nrapi = NextRollAPI(dry_run)
 
 # Sets the event tracking parameters.
 nrapi.set({
